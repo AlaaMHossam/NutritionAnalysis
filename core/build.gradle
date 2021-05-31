@@ -22,6 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "API_URL", '"https://api.edamam.com/api//"'
+        }
+        debug {
+            resValue "string", "API_URL", '"https://api.edamam.com/api/"'
         }
     }
     compileOptions {

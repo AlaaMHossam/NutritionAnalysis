@@ -1,8 +1,7 @@
 package com.alaahossam.core.network
 
 import android.content.Context
-import app.hatrick.core.BuildConfig
-import app.hatrick.core.R
+import com.alaahossam.core.R
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

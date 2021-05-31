@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Nutrition Analysis</string>
+    <string name="add_ingredients">Add Ingredients</string>
 </resources>

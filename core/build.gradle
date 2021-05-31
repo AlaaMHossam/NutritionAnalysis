@@ -62,4 +62,15 @@ dependencies {
     // For local unit tests
     testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    /** okhttp3 */
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor"
+
+    /** Retrofit */
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+
+    /** Toasty */
+    implementation "com.github.GrenderG:Toasty:$toasty_version"
 }

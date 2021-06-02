@@ -1,7 +1,10 @@
 package com.alaahossam.nutritionanalysis.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class TotalNutrients(
     @SerializedName("CA")
     val cA: Nutrient? = Nutrient(),
@@ -65,4 +68,4 @@ data class TotalNutrients(
     val wATER: Nutrient? = Nutrient(),
     @SerializedName("ZN")
     val zN: Nutrient? = Nutrient()
-)
+) : Parcelable

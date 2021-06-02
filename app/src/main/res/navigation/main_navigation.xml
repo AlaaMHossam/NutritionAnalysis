@@ -9,5 +9,18 @@
         android:id="@+id/ingredientInputFragment"
         android:name="com.alaahossam.nutritionanalysis.presentation.IngredientInputFragment"
         android:label="@string/add_ingredients"
-        tools:layout="@layout/fragment_ingredient_input" />
+        tools:layout="@layout/fragment_ingredient_input">
+        <action
+            android:id="@+id/action_ingredientInputFragment_to_summeryBreakdownFragment"
+            app:destination="@id/summeryBreakdownFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/summeryBreakdownFragment"
+        android:name="com.alaahossam.nutritionanalysis.presentation.SummeryBreakdownFragment"
+        android:label="SummeryBreakdownFragment"
+        tools:layout="@layout/fragment_summery_breakdown">
+        <argument
+            android:name="recipe"
+            app:argType="com.alaahossam.nutritionanalysis.data.model.RecipeDTO" />
+    </fragment>
 </navigation>

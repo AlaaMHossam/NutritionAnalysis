@@ -2,10 +2,6 @@ package com.alaahossam.core.network
 
 import android.content.Context
 import android.content.res.Resources
-import app.hatrick.core.network.ExpiredTokenException
-import app.hatrick.core.network.InternalServerException
-import app.hatrick.core.network.MissingTokenException
-import app.hatrick.core.network.NoConnectivityException
 import com.alaahossam.core.R
 import es.dmoral.toasty.Toasty
 import java.net.SocketTimeoutException

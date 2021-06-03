@@ -20,7 +20,7 @@ class NutritionAnalysisViewModel
     val ingredientsInputViewState = MutableLiveData<ViewState>()
     val enableAnalysisMediatorLiveData = MediatorLiveData<Boolean>()
 
-    val recipeLiveData = MutableLiveData<Result<RecipeDTO>>()
+    val recipeLiveData = MutableLiveData<Result<RecipeDTO>>(null)
 
     init {
         enableAnalysisMediatorLiveData.addSource(ingredientsInputLiveData) { enableAnalysis() }

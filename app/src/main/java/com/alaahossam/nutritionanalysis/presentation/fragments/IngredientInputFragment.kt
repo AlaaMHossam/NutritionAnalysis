@@ -1,15 +1,15 @@
-package com.alaahossam.nutritionanalysis.presentation
+package com.alaahossam.nutritionanalysis.presentation.fragments
 
-import android.widget.Toast
 import android.widget.Toast.*
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import app.hatrick.core.base.BaseFragment
 import com.alaahossam.core.states.Result
 import com.alaahossam.core.states.ViewState
 import com.alaahossam.nutritionanalysis.R
 import com.alaahossam.nutritionanalysis.data.model.RecipeDTO
 import com.alaahossam.nutritionanalysis.databinding.FragmentIngredientInputBinding
+import com.alaahossam.nutritionanalysis.presentation.NutritionAnalysisViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +28,7 @@ class IngredientInputFragment : BaseFragment<FragmentIngredientInputBinding>() {
     override fun initView() {
         super.initView()
         viewModel.recipeLiveData.observe(viewLifecycleOwner, {
-            when(it){
+            when (it) {
                 is Result.Success -> updateSuccessUI(it.data)
                 is Result.Error -> updateErrorUI(it.exception)
             }
@@ -40,7 +40,11 @@ class IngredientInputFragment : BaseFragment<FragmentIngredientInputBinding>() {
         if (data?.error?.isNotBlank() == true)
             makeText(requireContext(), data.error, LENGTH_LONG).show()
         else {
-            makeText(requireContext(), data?.totalNutrients.toString(), LENGTH_LONG).show()
+            viewModel.recipeLiveData.postValue(null)
+            findNavController().navigate(
+                IngredientInputFragmentDirections
+                    .actionIngredientInputFragmentToTotalNutritionFactsFragment(data!!)
+            )
         }
     }
 

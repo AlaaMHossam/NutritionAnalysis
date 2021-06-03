@@ -1,5 +1,6 @@
 package com.alaahossam.nutritionanalysis.data.repository
 
+import android.util.Log
 import com.alaahossam.core.states.Result
 import com.alaahossam.nutritionanalysis.data.model.Ingredients
 import com.alaahossam.nutritionanalysis.data.model.RecipeDTO

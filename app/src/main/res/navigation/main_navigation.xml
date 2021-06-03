@@ -7,18 +7,29 @@
 
     <fragment
         android:id="@+id/ingredientInputFragment"
-        android:name="com.alaahossam.nutritionanalysis.presentation.IngredientInputFragment"
+        android:name="com.alaahossam.nutritionanalysis.presentation.fragments.IngredientInputFragment"
         android:label="@string/add_ingredients"
         tools:layout="@layout/fragment_ingredient_input">
         <action
             android:id="@+id/action_ingredientInputFragment_to_summeryBreakdownFragment"
             app:destination="@id/summeryBreakdownFragment" />
+        <action
+            android:id="@+id/action_ingredientInputFragment_to_totalNutritionFactsFragment"
+            app:destination="@id/totalNutritionFactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/summeryBreakdownFragment"
-        android:name="com.alaahossam.nutritionanalysis.presentation.SummeryBreakdownFragment"
+        android:name="com.alaahossam.nutritionanalysis.presentation.fragments.SummeryBreakdownFragment"
         android:label="SummeryBreakdownFragment"
         tools:layout="@layout/fragment_summery_breakdown">
+        <argument
+            android:name="recipe"
+            app:argType="com.alaahossam.nutritionanalysis.data.model.RecipeDTO" />
+    </fragment>
+    <fragment
+        android:id="@+id/totalNutritionFactsFragment"
+        android:name="com.alaahossam.nutritionanalysis.presentation.fragments.TotalNutritionFactsFragment"
+        android:label="Total Nutrition Facts">
         <argument
             android:name="recipe"
             app:argType="com.alaahossam.nutritionanalysis.data.model.RecipeDTO" />

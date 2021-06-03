@@ -1,4 +1,4 @@
-package app.hatrick.core.network
+package com.alaahossam.core.network
 
 import java.io.IOException
 

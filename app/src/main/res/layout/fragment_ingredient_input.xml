@@ -23,7 +23,7 @@
         android:orientation="vertical"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        tools:context=".presentation.IngredientInputFragment">
+        tools:context=".presentation.fragments.IngredientInputFragment">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

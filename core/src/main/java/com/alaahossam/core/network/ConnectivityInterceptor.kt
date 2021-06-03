@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
-import app.hatrick.core.network.*
 import okhttp3.Headers.Companion.toHeaders
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -31,7 +30,7 @@ class ConnectivityInterceptor(private val context: Context) : Interceptor {
 
         when (response.code) {
             500 -> throw InternalServerException()
-            404 -> throw NotFoundException()
+          //  404 -> throw NotFoundException()
             403 -> throw ExpiredTokenException()
             401 -> throw MissingTokenException()
         }

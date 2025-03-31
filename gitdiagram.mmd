@@ -1,0 +1,111 @@
+flowchart TD
+    subgraph "App Module"
+        subgraph "Presentation Layer"
+            A_MainActivity["MainActivity"]:::ui
+            A_IngredientInputFragment["IngredientInputFragment"]:::ui
+            A_SummeryBreakdownFragment["SummeryBreakdownFragment"]:::ui
+            A_TotalNutritionFactsFragment["TotalNutritionFactsFragment"]:::ui
+            A_ViewModel["NutritionAnalysisViewModel"]:::ui
+        end
+        subgraph "Domain Layer"
+            A_UseCase["PostIngredientsCase"]:::domain
+            A_RepositoryInterface["NutritionAnalysisRepository"]:::domain
+        end
+        subgraph "Data Layer"
+            A_DI["NutritionAnalysisDIModule"]:::data
+            A_Data_Ingredients["Ingredients"]:::data
+            A_Data_Nutrient["Nutrient"]:::data
+            A_Data_RecipeDTO["RecipeDTO"]:::data
+            A_Data_TotalNutrients["TotalNutrients"]:::data
+            A_Webservice["NutritionAnalysisWebservice"]:::data
+            A_RepositoryImpl["NutritionAnalysisRepositoryImpl"]:::data
+        end
+    end
+
+    subgraph "Core Module"
+        subgraph "Base & Shared UI Components"
+            C_BaseActivity["BaseActivity"]:::core
+            C_BaseFragment["BaseFragment"]:::core
+        end
+        subgraph "Networking"
+            C_AppNetworkModule["AppNetworkModule"]:::core
+            C_ConnectivityInterceptor["ConnectivityInterceptor"]:::core
+            C_NetworkException["NetworkException"]:::core
+            C_NetworkExceptions["NetworkExceptions"]:::core
+        end
+        subgraph "State Management"
+            C_Resource["Resource"]:::core
+            C_Result["Result"]:::core
+            C_ViewState["ViewState"]:::core
+        end
+    end
+
+    %% Interactions within App Module
+    A_MainActivity -->|"uses"| A_ViewModel
+    A_IngredientInputFragment -->|"calls"| A_ViewModel
+    A_SummeryBreakdownFragment -->|"calls"| A_ViewModel
+    A_TotalNutritionFactsFragment -->|"calls"| A_ViewModel
+
+    A_ViewModel -->|"invokes"| A_UseCase
+    A_UseCase -->|"uses"| A_RepositoryInterface
+    A_RepositoryInterface -->|"implemented by"| A_RepositoryImpl
+    A_RepositoryImpl -->|"calls"| A_Webservice
+
+    %% Dependency Injection relationships
+    A_DI -->|"injects"| A_ViewModel
+    A_DI -->|"injects"| A_RepositoryImpl
+    A_DI -->|"provides"| A_Webservice
+
+    %% Core module interactions with App Module
+    A_MainActivity -->|"extends"| C_BaseActivity
+    A_IngredientInputFragment -->|"extends"| C_BaseFragment
+    A_SummeryBreakdownFragment -->|"extends"| C_BaseFragment
+    A_TotalNutritionFactsFragment -->|"extends"| C_BaseFragment
+
+    A_Webservice -->|"relies_on"| C_AppNetworkModule
+    A_Webservice -->|"relies_on"| C_ConnectivityInterceptor
+
+    A_ViewModel -->|"updates_state_with"| C_Resource
+    A_ViewModel -->|"updates_state_with"| C_Result
+    A_ViewModel -->|"updates_state_with"| C_ViewState
+
+    %% Click Events for App Module - Presentation Layer
+    click A_MainActivity "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/presentation/MainActivity.kt"
+    click A_IngredientInputFragment "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/presentation/fragments/IngredientInputFragment.kt"
+    click A_SummeryBreakdownFragment "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/presentation/fragments/SummeryBreakdownFragment.kt"
+    click A_TotalNutritionFactsFragment "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/presentation/fragments/TotalNutritionFactsFragment.kt"
+    click A_ViewModel "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/presentation/NutritionAnalysisViewModel.kt"
+
+    %% Click Events for App Module - Domain Layer
+    click A_UseCase "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/domain/usecases/PostIngredientsCase.kt"
+    click A_RepositoryInterface "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/domain/repository/NutritionAnalysisRepository.kt"
+
+    %% Click Events for App Module - Data Layer
+    click A_DI "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/data/di/NutritionAnalysisDIModule.kt"
+    click A_Data_Ingredients "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/data/model/Ingredients.kt"
+    click A_Data_Nutrient "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/data/model/Nutrient.kt"
+    click A_Data_RecipeDTO "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/data/model/RecipeDTO.kt"
+    click A_Data_TotalNutrients "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/data/model/TotalNutrients.kt"
+    click A_Webservice "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/data/network/NutritionAnalysisWebservice.kt"
+    click A_RepositoryImpl "https://github.com/alaamhossam/nutritionanalysis/blob/master/app/src/main/java/com/alaahossam/nutritionanalysis/data/repository/NutritionAnalysisRepositoryImpl.kt"
+
+    %% Click Events for Core Module - Base & Shared UI Components
+    click C_BaseActivity "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/base/BaseActivity.kt"
+    click C_BaseFragment "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/base/BaseFragment.kt"
+
+    %% Click Events for Core Module - Networking
+    click C_AppNetworkModule "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/network/AppNetworkModule.kt"
+    click C_ConnectivityInterceptor "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/network/ConnectivityInterceptor.kt"
+    click C_NetworkException "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/network/NetworkException.kt"
+    click C_NetworkExceptions "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/network/NetworkExceptions.kt"
+
+    %% Click Events for Core Module - State Management
+    click C_Resource "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/states/Resource.kt"
+    click C_Result "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/states/Result.kt"
+    click C_ViewState "https://github.com/alaamhossam/nutritionanalysis/blob/master/core/src/main/java/com/alaahossam/core/states/ViewState.kt"
+
+    %% Class Definitions for styling
+    classDef ui fill:#AED6F1,stroke:#1F618D,stroke-width:2px;
+    classDef domain fill:#A9DFBF,stroke:#28B463,stroke-width:2px;
+    classDef data fill:#F9E79F,stroke:#F1C40F,stroke-width:2px;
+    classDef core fill:#F5B7B1,stroke:#C0392B,stroke-width:2px;
